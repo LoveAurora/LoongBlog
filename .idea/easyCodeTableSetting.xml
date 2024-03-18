@@ -432,7 +432,7 @@
                 </list>
               </option>
               <option name="name" value="SgArticleTag" />
-              <option name="preName" value="sg" />
+              <option name="preName" value="sg_" />
               <option name="saveModelName" value="loong-framework" />
               <option name="savePackageName" value="" />
               <option name="savePath" value="./loong-framework/src/main/java/org/loong" />
