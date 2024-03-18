@@ -2,6 +2,7 @@ package org.loong.domain.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -9,9 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 文章表(SgArticle)表实体类
+ * 文章表(Article)表实体类
  *
- * @author makejava
+ * @author loong
  * @since 2024-03-08 15:13:43
  */
 @SuppressWarnings("serial")
@@ -40,7 +41,10 @@ public class Article {
     private Long viewCount;
     //是否允许评论 1是，0否
     private String isComment;
-    
+    //分类名称
+    @TableField(exist = false)
+    private String categoryName;
+
     private Long createBy;
     
     private Date createTime;
