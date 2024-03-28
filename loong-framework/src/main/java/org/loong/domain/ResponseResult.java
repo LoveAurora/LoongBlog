@@ -40,17 +40,17 @@ public class ResponseResult<T> implements Serializable {
         return result.error(code, msg);
     }
 
-    public static ResponseResult okResult() {
+    public static ResponseResult successResult() {
         ResponseResult result = new ResponseResult();
         return result;
     }
 
-    public static ResponseResult okResult(int code, String msg) {
+    public static ResponseResult successResult(int code, String msg) {
         ResponseResult result = new ResponseResult();
-        return result.ok(code, null, msg);
+        return result.success(code, null, msg);
     }
 
-    public static ResponseResult okResult(Object data) {
+    public static ResponseResult successResult(Object data) {
         ResponseResult result = setAppHttpCodeEnum(AppHttpCodeEnum.SUCCESS, AppHttpCodeEnum.SUCCESS.getMsg());
         if (data != null) {
             result.setData(data);
@@ -67,11 +67,11 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums) {
-        return okResult(enums.getCode(), enums.getMsg());
+        return successResult(enums.getCode(), enums.getMsg());
     }
 
     private static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums, String msg) {
-        return okResult(enums.getCode(), msg);
+        return successResult(enums.getCode(), msg);
     }
 
     public ResponseResult<?> error(Integer code, String msg) {
@@ -80,20 +80,20 @@ public class ResponseResult<T> implements Serializable {
         return this;
     }
 
-    public ResponseResult<?> ok(Integer code, T data) {
+    public ResponseResult<?> success(Integer code, T data) {
         this.code = code;
         this.data = data;
         return this;
     }
 
-    public ResponseResult<?> ok(Integer code, T data, String msg) {
+    public ResponseResult<?> success(Integer code, T data, String msg) {
         this.code = code;
         this.data = data;
         this.msg = msg;
         return this;
     }
 
-    public ResponseResult<?> ok(T data) {
+    public ResponseResult<?> success(T data) {
         this.data = data;
         return this;
     }

@@ -28,6 +28,6 @@ public class LinkServiceImpl extends ServiceImpl<LinkMapper, Link> implements Li
         List<Link> links = list(queryWrapper);
         //转换vo
         List<LinkVo> linkVos = BeanCopyUtils.copyBeanList(links, LinkVo.class);
-        return ResponseResult.okResult(linkVos);
+        return ResponseResult.successResult(linkVos);
     }
 }

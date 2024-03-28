@@ -1,6 +1,7 @@
 package org.loong.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.Comment;
 
 
@@ -11,5 +12,8 @@ import org.loong.domain.entity.Comment;
  * @since 2024-03-18 14:03:45
  */
 public interface CommentService extends IService<Comment> {
+    ResponseResult commentList(String articleComment, Long articleId, Integer pageNum, Integer pageSize);
+    ResponseResult addComment(Comment comment);
 
+    ResponseResult linkCommentList(Object o, Integer pageNum, Integer pageSize, Integer size);
 }

@@ -1,20 +1,21 @@
 package org.loong.controller;
 
 import org.loong.domain.ResponseResult;
-import org.loong.service.LinkService;
+import org.loong.service.impl.Pythonimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/link")
-public class LinkController {
-    @Autowired
-    private LinkService linkService;
 
-    @GetMapping("/getAllLink")
-    public ResponseResult getAllLink() {
-        return ResponseResult.successResult(linkService.getAllLink());
+@RestController
+@RequestMapping("/ioc")
+public class IOCController {
+    @Autowired
+    private Pythonimpl pythonimpl;
+    @GetMapping
+    public ResponseResult ioc(){
+        return  pythonimpl.IOC()  ;
     }
+
 }

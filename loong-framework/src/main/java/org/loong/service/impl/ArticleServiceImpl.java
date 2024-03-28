@@ -55,7 +55,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             BeanUtils.copyProperties(article, vo);
             articleVos.add(vo);
         }
-        return ResponseResult.okResult(articleVos);
+        return ResponseResult.successResult(articleVos);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         //封装查询结果
         List<ArticleListVo> articleListVos = BeanCopyUtils.copyBeanList(page.getRecords(), ArticleListVo.class);
         PageVo pageVo = new PageVo(articleListVos, page.getTotal());
-        return ResponseResult.okResult(pageVo);
+        return ResponseResult.successResult(pageVo);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         if (category!=null){
             articleDetailVo.setCategoryName(category.getName());
         }
-        return ResponseResult.okResult(articleDetailVo);
+        return ResponseResult.successResult(articleDetailVo);
     }
 }
 

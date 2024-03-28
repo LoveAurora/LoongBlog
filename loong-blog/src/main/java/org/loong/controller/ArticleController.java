@@ -24,8 +24,8 @@ public class ArticleController {
 
     @GetMapping("/hotArticleList")
     //Article是公共模块的实体类
-    public List<Article> test(HttpServletResponse response) {
-        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+    public List<Article> hotArticleList() {
+        // response.setHeader("Content-Type", "text/html;charset=UTF-8");
         //查询数据库的所有数据
         return articleService.list();
     }

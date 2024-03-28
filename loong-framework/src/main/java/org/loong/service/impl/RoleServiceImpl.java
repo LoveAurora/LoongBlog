@@ -5,11 +5,11 @@ import org.loong.mapper.RoleMapper;
 import org.loong.service.RoleService;
 import org.springframework.stereotype.Service;
 /**
- * 角色信息表(SysRole)表服务实现类
+ * 角色信息表(Role)表服务实现类
  *
  * @author loong
  * @since 2024-03-17 21:01:57
  */
-@Service("sysRoleService")
+@Service("roleService")
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 }

@@ -16,8 +16,8 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     @GetMapping("/getCategoryList")
-    public ResponseResult CategoryList(HttpServletResponse response) {
-        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+    public ResponseResult CategoryList() {
+       // response.setHeader("Content-Type", "text/html;charset=UTF-8");
         return categoryService.getCategoryList();
     }
 
