@@ -17,5 +17,5 @@ public class LinkController {
     public ResponseResult getAllLink() {
         return ResponseResult.successResult(linkService.getAllLink());
     }
-    //ss
+
 }
