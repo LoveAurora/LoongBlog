@@ -31,6 +31,6 @@ public class CommentController {
     }
     @GetMapping("/linkCommentList")
     public ResponseResult linkCommentList( Integer pageNum, Integer pageSize){
-        return commentService.linkCommentList(SystemConstants.LINK_COMMENT,null,pageNum,pageSize);
+        return commentService.commentList(SystemConstants.LINK_COMMENT,null,pageNum,pageSize);
     }
 }

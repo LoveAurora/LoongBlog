@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 //使用Lombok提供的Slf4j注解，实现日志功能
 @Slf4j
-
 //全局异常处理。最终都会在这个类进行处理异常
 public class GlobalExceptionHandler {
 

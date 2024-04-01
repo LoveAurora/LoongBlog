@@ -15,7 +15,7 @@ public class LinkController {
 
     @GetMapping("/getAllLink")
     public ResponseResult getAllLink() {
-        return ResponseResult.successResult(linkService.getAllLink());
+        return linkService.getAllLink();
     }
 
 }

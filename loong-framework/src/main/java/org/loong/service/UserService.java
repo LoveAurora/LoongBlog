@@ -1,5 +1,6 @@
 package org.loong.service;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.User;
 
 /**
@@ -9,4 +10,7 @@ import org.loong.domain.entity.User;
  * @since 2024-03-17 20:50:24
  */
 public interface UserService extends IService<User> {
+    ResponseResult getUserInfo( );
+
+    ResponseResult updateUserInfo(User user);
 }

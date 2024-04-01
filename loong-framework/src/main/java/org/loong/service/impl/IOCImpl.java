@@ -9,7 +9,7 @@ import org.loong.domain.entity.IOC;
 import org.springframework.stereotype.Service;
 
 @Service("pythonimpl")
-public class Pythonimpl {
+public class IOCImpl {
 //    public static void main(String[] args) {
 //        try {
 //            // 你的Python脚本路径

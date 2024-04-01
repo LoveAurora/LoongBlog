@@ -27,7 +27,7 @@ public class Comment {
     private String type;
     //文章id
     private Long articleId;
-    //根评论id，如果是根评论则为-1
+    //根评论id，如果是根评论则为-1,如果有子评论，其他子评论的root_id就是根评论的id
     private Long rootId;
     //评论内容
     private String content;

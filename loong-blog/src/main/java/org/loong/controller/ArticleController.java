@@ -24,19 +24,20 @@ public class ArticleController {
 
     @GetMapping("/hotArticleList")
     //Article是公共模块的实体类
-    public List<Article> hotArticleList() {
+    public ResponseResult hotArticleList() {
         // response.setHeader("Content-Type", "text/html;charset=UTF-8");
         //查询数据库的所有数据
-        return articleService.list();
+        return articleService.hotArticleList();
     }
-    @GetMapping("articleList")
-    public ResponseResult articleList(Integer pageNum, Integer pageSize, Long categoryId){
 
-        return   articleService.articleList(pageNum,pageSize,categoryId);
+    @GetMapping("articleList")
+    public ResponseResult articleList(Integer pageNum, Integer pageSize, Long categoryId) {
+
+        return articleService.articleList(pageNum, pageSize, categoryId);
     }
 
     @GetMapping("/{id}")
-    public ResponseResult getArticleDetail(@PathVariable("id") Long id){
-         return articleService.getArticleDetail(id);
+    public ResponseResult getArticleDetail(@PathVariable("id") Long id) {
+        return articleService.getArticleDetail(id);
     }
 }

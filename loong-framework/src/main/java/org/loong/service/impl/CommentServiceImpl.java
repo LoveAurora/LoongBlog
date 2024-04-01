@@ -35,16 +35,16 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     public ResponseResult commentList(String CommentType, Long articleId, Integer pageNum, Integer pageSize) {
         LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper();
         //对articleId进行判断，作用是得到指定的文章
-        queryWrapper.eq(Comment::getArticleId, articleId);
-        //对评论区的某条评论的rootID进行判断，如果为-1，就表示是根评论。SystemConstants是我们写的解决字面值的类
-        queryWrapper.eq(SystemConstants.ARTICLE_COMMENT.equals(CommentType), Comment::getRootId, SystemConstants.COMMENT_ROOT);
+        queryWrapper.eq(SystemConstants.ARTICLE_COMMENT.equals(CommentType),Comment::getArticleId, articleId);
+        //对评论区的某条评论的rootID进行判断，如果为-1，就表示是根评论。
+        queryWrapper.eq( Comment::getRootId, SystemConstants.COMMENT_ROOT);
         // 评论类型
         queryWrapper.eq(Comment::getType, CommentType);
 
         //分页查询。查的是整个评论区的每一条评论
         Page<Comment> page = new Page<>(pageNum, pageSize);
         page = page(page, queryWrapper);
-        //调用下面那个方法
+        //封装成CommentVo
         List<CommentVo> commentVoList = xxToCommentList(page.getRecords());
 
         // 查询评论区的所有子评论
@@ -81,7 +81,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
             //通过toCommentUserId查询用户的昵称并赋值
             String nickName = userService.getById(commentVo.getCreateBy()).getNickName();
             commentVo.setUsername(nickName);
-            //如果toCommentUserId不为-1才进行查询
+            //如果toCommentUserId不为-1才进行查询,为-1表明为根评论
             if (commentVo.getToCommentUserId() != -1) {
                 String toCommentUserName = userService.getById(commentVo.getToCommentUserId()).getNickName();
                 commentVo.setToCommentUserName(toCommentUserName);
@@ -98,13 +98,6 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         save(comment);
         return ResponseResult.successResult();
     }
-
-    @Override
-    public ResponseResult linkCommentList(Object o, Integer pageNum, Integer pageSize, Integer size) {
-
-        return null;
-    }
-
 
 }
 
