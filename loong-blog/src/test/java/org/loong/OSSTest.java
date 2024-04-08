@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 import java.io.*;
-@ConfigurationProperties(prefix = "oss")
+
+@Component
+//@ConfigurationProperties(prefix = "oss")
 @SpringBootTest
 public class OSSTest {
     private String accessKey;
@@ -32,9 +34,9 @@ public class OSSTest {
 
         UploadManager uploadManager = new UploadManager(cfg);
         //...生成上传凭证，然后准备上传
-        String accessKey = "oBc9bSk6oIDNUJPWXJWZLpFrdRR08u1M-1CZjWgI";
-        String secretKey = "F1qJazVNCijj6RypL7G0Vu2SnOStpUHz_d-PDhUw";
-        String bucket = "loong-blog";
+//        String accessKey = "oBc9bSk6oIDNUJPWXJWZLpFrdRR08u1M-1CZjWgI";
+//        String secretKey = "F1qJazVNCijj6RypL7G0Vu2SnOStpUHz_d-PDhUw";
+//        String bucket = "loong-blog";
         UUID uuid = UUID.randomUUID();
         //默认不指定key的情况下，以文件内容的hash值作为文件名
         String key = "blog/" + uuid.toString();

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @author 35238
+ * @author loong
  * @date 2023/7/23 0023 22:03
  */
 //@ControllerAdvice //对controller层的增强
