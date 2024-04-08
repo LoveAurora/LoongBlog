@@ -15,6 +15,7 @@ import org.loong.mapper.ArticleMapper;
 import org.loong.service.ArticleService;
 import org.loong.service.CategoryService;
 import org.loong.utils.BeanCopyUtils;
+import org.loong.utils.RedisCache;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private RedisCache redisCache;
 
     @Override
     public ResponseResult hotArticleList() {
@@ -98,10 +101,16 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         ArticleDetailVo articleDetailVo = BeanCopyUtils.copyBean(article, ArticleDetailVo.class);
         Long categoryId = articleDetailVo.getCategoryId();
         Category category = categoryService.getById(categoryId);
-        if (category!=null){
+        if (category != null) {
             articleDetailVo.setCategoryName(category.getName());
         }
         return ResponseResult.successResult(articleDetailVo);
+    }
+
+    @Override
+    public ResponseResult updateViewCount(Long id) {
+        redisCache.incrementCacheMapValue("article:viewCount", id.toString(), 1);
+        return ResponseResult.successResult();
     }
 }
 

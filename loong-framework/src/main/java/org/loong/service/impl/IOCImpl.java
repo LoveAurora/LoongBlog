@@ -63,8 +63,7 @@ public class IOCImpl {
         List<IOC> list = new ArrayList<>();
         try {
             // 你的Python脚本路径
-            String pythonScriptPath = "C:\\Users\\tyl\\Desktop\\iocsearcher\\iocextract.py";
-
+            String pythonScriptPath = "C:\\Users\\tyl\\Desktop\\Research\\Iocsearcher\\iocextract.py";
             // 执行Python脚本的命令
             String[] cmd = new String[2];
             cmd[0] = "C:\\Users\\tyl\\.conda\\envs\\ioc\\python.exe";
@@ -72,7 +71,7 @@ public class IOCImpl {
 
             // 创建进程建造者
             ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-            processBuilder.directory(new File("C:\\Users\\tyl\\Desktop\\iocsearcher"));
+            processBuilder.directory(new File("C:\\Users\\tyl\\Desktop\\Research\\Iocsearcher"));
             // 启动进程
             Process process = processBuilder.start();
             // 读取进程的标准输出

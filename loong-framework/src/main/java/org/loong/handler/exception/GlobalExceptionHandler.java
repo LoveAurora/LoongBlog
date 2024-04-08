@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @author 35238
+ * @author loong
  * @date 2023/7/23 0023 22:03
  */
 //@ControllerAdvice //对controller层的增强
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 //或者用下面一个注解代替上面的两个注解
 @RestControllerAdvice
-
 //使用Lombok提供的Slf4j注解，实现日志功能
 @Slf4j
 //全局异常处理。最终都会在这个类进行处理异常

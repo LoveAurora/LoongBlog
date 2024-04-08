@@ -33,8 +33,9 @@ public class UploadServiceImpl implements UploadService {
         //判断文件类型
         //获取原始文件名
         String originFileName = img.getOriginalFilename();
+        System.out.println(originFileName.endsWith(".jpg"));
         //对原始文件名进行判断
-        if (!originFileName.endsWith(".png")) {
+        if (!originFileName.endsWith(".png") && !originFileName.endsWith(".jpg")) {
             throw new SystemException(AppHttpCodeEnum.FILE_TYPE_ERROR);
         }
         //如果判断通过上传文件到OSS

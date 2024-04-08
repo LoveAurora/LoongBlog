@@ -1,12 +1,9 @@
 package org.loong.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.loong.constants.SystemConstants;
 import org.loong.domain.entity.LoginUser;
-import org.loong.domain.entity.Menu;
 import org.loong.mapper.MenuMapper;
 import org.loong.mapper.UserMapper;
-import org.loong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.loong.domain.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 
 @Service

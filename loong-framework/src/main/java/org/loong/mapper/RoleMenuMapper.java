@@ -9,4 +9,5 @@ import org.loong.domain.entity.RoleMenu;
  * @since 2024-03-17 20:58:17
  */
 public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
+
 }

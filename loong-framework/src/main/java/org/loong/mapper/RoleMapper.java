@@ -9,4 +9,6 @@ import org.loong.domain.entity.Role;
  * @since 2024-03-17 21:12:32
  */
 public interface RoleMapper extends BaseMapper<Role> {
+    String selectRoleKeyByUserId(Long userId);
+    Long selectRoleIdByUserId(Long roleId);
 }

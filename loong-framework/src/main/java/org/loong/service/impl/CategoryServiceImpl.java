@@ -50,14 +50,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         return ResponseResult.successResult(categoryVos);
     }
 
-//    @Override
-//    public List<CategoryVo> listAllCategory() {
-//        return null;
-//    }
+    @Override
+    public List<CategoryVo> listAllCategory() {
+        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Category::getStatus, SystemConstants.STATUS_NORMAL);
+        List<Category> list = list(queryWrapper);
+        if (list != null) {
+            return BeanCopyUtils.copyBeanList(list, CategoryVo.class);
+        }
+        return null;
+    }
 
-//    @Override
-//    public PageVo selectCategoryPage(Category category, Integer pageNum, Integer pageSize) {
-//        return null;
-//    }
+
 }
 

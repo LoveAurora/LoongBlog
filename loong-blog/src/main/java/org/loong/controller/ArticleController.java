@@ -5,16 +5,14 @@ import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.Article;
 import org.loong.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
 @RestController
+
 @RequestMapping("/article")
 public class ArticleController {
     //Todo: Autowired注解是Spring的注解，用于自动装配，可以对类成员变量、方法及构造函数进行标注，完成自动装配工作
@@ -40,4 +38,13 @@ public class ArticleController {
     public ResponseResult getArticleDetail(@PathVariable("id") Long id) {
         return articleService.getArticleDetail(id);
     }
+
+
+    @PutMapping("/updateViewCount/{id}")
+    public ResponseResult updateViewCount(@PathVariable("id") Long id) {
+        return articleService.updateViewCount(id);
+    }
+
+
+
 }
