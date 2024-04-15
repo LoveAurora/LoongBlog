@@ -1,9 +1,11 @@
 package org.loong.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.User;
+import org.loong.domain.vo.PageVo;
 import org.loong.domain.vo.UserInfoVo;
 import org.loong.enums.AppHttpCodeEnum;
 import org.loong.handler.exception.SystemException;
@@ -26,8 +28,9 @@ import org.springframework.util.StringUtils;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Override
-    public ResponseResult getUserInfo( ) {
+    public ResponseResult getUserInfo() {
         //获取当前用户id
         Long userId = SecurityUtils.getUserId();
         //根据用户id查询用户信息
@@ -46,22 +49,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public ResponseResult register(User user) {
-        if (!StringUtils.hasText(user.getUserName())){
+        if (!StringUtils.hasText(user.getUserName())) {
             throw new SystemException(AppHttpCodeEnum.USERNAME_NOT_NULL);
         }
-        if (!StringUtils.hasText(user.getPassword())){
+        if (!StringUtils.hasText(user.getPassword())) {
             throw new SystemException(AppHttpCodeEnum.PASSWORD_NOT_NULL);
         }
-        if (!StringUtils.hasText(user.getEmail())){
+        if (!StringUtils.hasText(user.getEmail())) {
             throw new SystemException(AppHttpCodeEnum.EMAIL_NOT_NULL);
         }
-        if (!StringUtils.hasText(user.getNickName())){
+        if (!StringUtils.hasText(user.getNickName())) {
             throw new SystemException(AppHttpCodeEnum.NICKNAME_NOT_NULL);
         }
-        if(userNameExist(user.getUserName())){
+        if (userNameExist(user.getUserName())) {
             throw new SystemException(AppHttpCodeEnum.USERNAME_EXIST);
         }
-        if(nickNameExist(user.getNickName())){
+        if (nickNameExist(user.getNickName())) {
             throw new SystemException(AppHttpCodeEnum.NICKNAME_EXIST);
         }
         // 对密码进行加密
@@ -70,15 +73,58 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         save(user);
         return ResponseResult.successResult();
     }
+
+    @Override
+    public ResponseResult selectUserPage(User user, Integer pageNum, Integer pageSize) {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(StringUtils.hasText(user.getUserName()), User::getUserName, user.getUserName());
+        queryWrapper.eq(StringUtils.hasText(user.getPhonenumber()), User::getPhonenumber, user.getPhonenumber());
+        queryWrapper.eq(StringUtils.hasText(user.getStatus()), User::getStatus, user.getStatus());
+        Page<User> page = new Page<>();
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        page(page, queryWrapper);
+        // 封装数据返回
+        PageVo pageVo = new PageVo(page.getRecords(), page.getTotal());
+        return ResponseResult.successResult(pageVo);
+    }
+
+    @Override
+    public boolean checkUserNameUnique(String userName) {
+        return false;
+    }
+
+    @Override
+    public boolean checkPhoneUnique(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean checkEmailUnique(User user) {
+        return false;
+    }
+
+    @Override
+    public ResponseResult addUser(User user) {
+        return null;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        updateById(user);
+
+    }
+
     private boolean nickNameExist(String nickName) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getNickName,nickName);
-        return count(queryWrapper)>0;
+        queryWrapper.eq(User::getNickName, nickName);
+        return count(queryWrapper) > 0;
     }
-    private boolean userNameExist(String userName){
+
+    private boolean userNameExist(String userName) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getUserName,userName);
-        return count(queryWrapper)>0;
+        queryWrapper.eq(User::getUserName, userName);
+        return count(queryWrapper) > 0;
 
     }
 }

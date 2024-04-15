@@ -1,6 +1,5 @@
 package org.loong.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.loong.domain.ResponseResult;
 import org.loong.domain.dto.AddTagDto;
 import org.loong.domain.dto.TagListDto;
@@ -34,9 +33,9 @@ public class TagController {
         return ResponseResult.successResult();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseResult deleteTag(@PathVariable Long id) {
-        tagService.removeById(id);
+    @DeleteMapping("/{ids}")
+    public ResponseResult deleteTag(@PathVariable List<Long> ids) {
+        tagService.removeByIds(ids);
         return ResponseResult.successResult();
     }
 
@@ -48,13 +47,13 @@ public class TagController {
 
     @PutMapping()
     public ResponseResult updateTag(@RequestBody TagUpdateVo updateVo) {
-        Tag tag = BeanCopyUtils.copyBean(updateVo,Tag.class);
+        Tag tag = BeanCopyUtils.copyBean(updateVo, Tag.class);
         tagService.updateById(tag);
         return ResponseResult.successResult();
     }
 
     @GetMapping("/listAllTag")
-    public ResponseResult listAllTag(){
+    public ResponseResult listAllTag() {
         List<TagVo> list = tagService.listAllTag();
         return ResponseResult.successResult(list);
     }

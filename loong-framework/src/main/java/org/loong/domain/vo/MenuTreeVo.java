@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
+@SuppressWarnings("serial")
 public class MenuTreeVo  {
 
     private static final long serialVersionUID = 1L;

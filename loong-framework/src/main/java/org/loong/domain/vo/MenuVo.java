@@ -1,15 +1,9 @@
-package com.sangeng.domain.vo;
+package org.loong.domain.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * 菜单权限表(Menu)表实体类
@@ -51,7 +45,6 @@ public class MenuVo {
 
     //备注
     private String remark;
-    
 
 
 }

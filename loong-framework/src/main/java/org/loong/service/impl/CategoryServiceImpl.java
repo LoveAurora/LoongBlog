@@ -1,21 +1,24 @@
 package org.loong.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
 import org.loong.constants.SystemConstants;
 import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.Article;
 import org.loong.domain.entity.Category;
 import org.loong.domain.vo.CategoryVo;
+import org.loong.domain.vo.PageVo;
 import org.loong.mapper.CategoryMapper;
 import org.loong.service.ArticleService;
 import org.loong.service.CategoryService;
 import org.loong.utils.BeanCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -59,6 +62,21 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
             return BeanCopyUtils.copyBeanList(list, CategoryVo.class);
         }
         return null;
+    }
+
+    @Override
+    public ResponseResult selectCategoryPage(Category category, Integer pageNum, Integer pageSize) {
+        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(StringUtils.hasText(category.getName()), Category::getName, category.getName());
+        queryWrapper.eq(Objects.nonNull(category.getStatus()), Category::getStatus, SystemConstants.STATUS_NORMAL);
+
+        Page<Category> page = new Page<>();
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        page(page, queryWrapper);
+        PageVo pageVo = new PageVo(page.getRecords(), page.getTotal());
+        return ResponseResult.successResult(pageVo);
+
     }
 
 

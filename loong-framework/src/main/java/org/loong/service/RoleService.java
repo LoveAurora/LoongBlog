@@ -1,5 +1,6 @@
 package org.loong.service;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.Role;
 
 import java.util.List;
@@ -12,4 +13,14 @@ import java.util.List;
  */
 public interface RoleService extends IService<Role> {
     List<String> selectRoleKeyByUserId(Long id);
+
+    List<Role> selectRoleAll();
+
+    List<Long> selectRoleIdByUserId(Long userId);
+
+    void updateRole(Role role);
+
+    void addRole(Role role);
+
+    ResponseResult selectRolePage(Role role, Integer pageNum, Integer pageSize);
 }
