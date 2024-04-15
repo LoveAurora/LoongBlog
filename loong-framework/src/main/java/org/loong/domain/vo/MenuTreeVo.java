@@ -5,15 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.List;
-
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-@SuppressWarnings("serial")
-public class MenuTreeVo  {
+public class MenuTreeVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +25,5 @@ public class MenuTreeVo  {
     private Long parentId;
 
     /** 子节点 */
-   // @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<MenuTreeVo> children;
 }
