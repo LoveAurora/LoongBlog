@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sg_article_tag")
+@TableName("loong_article_tag")
 public class ArticleTag implements Serializable {
     private static final long serialVersionUID = 625337492348897098L;
     //文章id

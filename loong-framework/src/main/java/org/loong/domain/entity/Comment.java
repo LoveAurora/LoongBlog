@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sg_comment")
+@TableName("loong_comment")
 public class Comment {
     
     private Long id;

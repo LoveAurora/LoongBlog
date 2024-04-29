@@ -20,7 +20,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("sg_tag")
+@TableName("loong_tag")
 public class Tag {
     @TableId
     private Long id;

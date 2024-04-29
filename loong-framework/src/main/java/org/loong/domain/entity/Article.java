@@ -21,7 +21,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sg_article")
+@TableName("loong_article")
 public class Article {
     @TableId
     private Long id;

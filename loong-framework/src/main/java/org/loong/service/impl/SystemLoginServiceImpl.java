@@ -3,10 +3,7 @@ package org.loong.service.impl;
 import org.loong.domain.ResponseResult;
 import org.loong.domain.entity.LoginUser;
 import org.loong.domain.entity.User;
-import org.loong.domain.vo.BlogUserLoginVo;
-import org.loong.domain.vo.UserInfoVo;
 import org.loong.service.SystemLoginService;
-import org.loong.utils.BeanCopyUtils;
 import org.loong.utils.JwtUtil;
 import org.loong.utils.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +35,7 @@ public class SystemLoginServiceImpl implements SystemLoginService {
         String userId = loginUser.getUser().getId().toString();
         String jwt = JwtUtil.createJWT(userId);
         // 把用户信息存入redis
-        redisCache.setCacheObject("login" + userId, loginUser);
+        redisCache.setCacheObject("adminloginuserId:" + userId, loginUser);
         //把token返回给前端
         Map<String, String> map =new HashMap<>();
         map.put("token",jwt);

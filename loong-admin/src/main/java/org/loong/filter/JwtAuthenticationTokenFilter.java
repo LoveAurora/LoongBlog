@@ -53,7 +53,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         String userId = claims.getSubject();
         // 解析请求头中的token
-        LoginUser loginUser = redisCache.getCacheObject("login" + userId);
+        LoginUser loginUser = redisCache.getCacheObject("adminloginuserId:" + userId);
 
         //从redis中获取用户信息 redis里面没有该用户就返回给前端 需要登录
         if (Objects.isNull(loginUser)) {
