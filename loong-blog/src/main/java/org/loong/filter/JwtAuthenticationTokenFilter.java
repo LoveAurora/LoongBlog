@@ -8,6 +8,8 @@ import org.loong.enums.AppHttpCodeEnum;
 import org.loong.utils.JwtUtil;
 import org.loong.utils.RedisCache;
 import org.loong.utils.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Configuration
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -53,7 +53,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         String userId = claims.getSubject();
         // 解析请求头中的token
-        LoginUser loginUser = redisCache.getCacheObject("bloglogin" + userId);
+        LoginUser loginUser = redisCache.getCacheObject("blogloginuserId:" + userId);
         if (Objects.isNull(loginUser)) {
             ResponseResult result = ResponseResult.errorResult(AppHttpCodeEnum.NEED_LOGIN);
             WebUtils.renderString(httpServletResponse, JSON.toJSONString(result));

@@ -93,15 +93,6 @@ public class IOCUpload {
                     JSONObject serverResponseJson = JSONObject.parseObject(responseString);
                     return serverResponseJson;
                 }
-//
-//                HttpEntity serverEntity = responseEntity.getEntity();
-//                String serverResponseString = EntityUtils.toString(serverEntity);
-
-//                log.info("Received response: " + serverResponseString);
-
-                // 使用 Fastjson 解析 JSON 字符串
-//                JSONObject serverResponseJson = JSONObject.parseObject(serverResponseString);
-
                 // 处理服务器返回的数据
 
                 return null;
